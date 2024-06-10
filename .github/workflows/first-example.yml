@@ -8,11 +8,17 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
 
-      - name: welcome message
-        run: |
-          echo "my first github actions job"
-          ls -ltra
-          cat README.md
+      - name: Install cowsay program
+        run: sudo apt-get install cowsay -y
 
-      - name: Generate ASCII Content
-        run: cowsay -f dragon "Run for cover, I am a draong" >> dragon.txt
+      - name: Execute cowsay command
+        run: cowsay -f dragon "Run for the cover, I am dragon ..." >> dragon.txt
+
+      - name: Test file exists
+        run: grep -i "dragon" dragon.txt
+
+      - name: Read file
+        run: cat dragon.txt
+
+      - name: checkout repo files
+        run: ls -ltra
